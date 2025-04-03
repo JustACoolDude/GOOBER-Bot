@@ -13,7 +13,7 @@ module.exports = {
                     \nA bot meant to help with hosting trivia shows.\
                     \nCreated by JustACoolDude, 2025\
                     \nMade in DiscordJS v14.18.0\
-					\nThanks a bunch to the folks at discord.js Guide!';
+		    \nThanks a bunch to the folks at discord.js Guide!';
 		await interaction.reply(text);
 	},
 };
