@@ -75,8 +75,6 @@ module.exports = {
             }
             playerEmbed.addFields({name: "Relics", value: relicText})
             await interaction.reply({ embeds: [playerEmbed] });
-
-            
         }
         
         // If user is looking for information on another player (including self).    
