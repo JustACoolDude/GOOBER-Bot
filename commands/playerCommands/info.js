@@ -71,17 +71,33 @@ module.exports = {
                 .setTitle(inputPlayer.realName)
                 .setURL('https://discord.js.org/')
                 .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
-                .setDescription('Some description here')
+                //.setDescription('Some description here')
                 .setThumbnail('https://i.imgur.com/AfFp7pu.png')
                 .addFields(
                     { name: 'Score', value: inputPlayer.score.toString()},
-                    //{ name: '\u200B', value: '\u200B' },
-                    //{ name: 'Inline field title', value: 'Some value here', inline: true },
-                    //{ name: 'Inline field title', value: 'Some value here', inline: true },
                 )
-                .addFields({ name: 'Inline field title', value: 'Some value here', inline: true })
                 //.setImage('https://i.imgur.com/AfFp7pu.png')
                 .setTimestamp();
+
+            // Creates Item Fields for each player Item
+            for (let i = 0; i < inputPlayer.maxInvSize; i++){
+                itemText = inputPlayer.itemInventory[i] ?? "";
+                playerEmbed.addFields({ name: `Slot ${i+1}`, value: `${itemText}`, inline: true })
+                 if ((i+1) % 2 == 0){
+                 playerEmbed.addFields({name: "\t", value: "\t"})   
+                }
+            }
+
+            //Creates a Relic field, this time uses a newline for each relic instead of giving it its own slot.
+            var relicText = "";
+            for (let i = 0; i < inputPlayer.relicInventory.length; i++){
+                relicText += inputPlayer.relicInventory[i];
+                if (i != inputPlayer.relicInventory.length){
+                    relicText += "\n";
+                }    
+            }
+            playerEmbed.addFields({name: "Relics", value: relicText})
+
             await interaction.reply({ embeds: [playerEmbed] });
         }
 

@@ -18,14 +18,14 @@ class Player {
     constructor (name, realName, score, scoreHistory, scoreHistoryKey, kromer, itemInventory, maxInvSize, relicInventory, discID){
         this.name = name;
         this.realName = realName;
-        this.score = 0;
-        this.scoreHistory = new Map();
-        this.scoreHistoryKey = 0;
+        this.score = score;
+        this.scoreHistory = scoreHistory;
+        this.scoreHistoryKey = scoreHistoryKey;
         this.kromer = 0;
-        this.itemInventory = new Array();
-        this.maxInvSize = 4;
-        this.relicInventory = new Array();
-        this.discID = 0;
+        this.itemInventory = itemInventory;
+        this.maxInvSize = maxInvSize;
+        this.relicInventory = relicInventory;
+        this.discID = discID;
         //this.playerIndex = playerIndex;
     }
     

@@ -120,7 +120,7 @@ module.exports = {
 				await wait (3_000);
 				await i.deleteReply();
 			}
-			// Checks if 4 seconds have passed. There is a delay before announcing the results, which prevents the buzzer from being moved due to the bot's
+			// Checks if 3 seconds have passed. There is a delay before announcing the results, which prevents the buzzer from being moved due to the bot's
 			// text. Otherwise, people might eventually have to scroll up for the button while they're all trying to hit it at the same time. 
 			else if (timePassed){
 				buzzerSound();
@@ -129,13 +129,14 @@ module.exports = {
 				await i.channel.send(textToSend);
 				textToSend = "";
 			}
-			// After 4 seconds, bypasses the delay for anyone else who wants to buzz in after.
+
+			// After 3 seconds, bypasses the delay for anyone else who wants to buzz in after. Uses the timePassed variable as a timer for the previous else if block.
 			else {
 				buzzerSound();
 				playerArray.add(i.user.id);
 				textToSend += `${i.user} has buzzed in!\n`
 				await i.deferReply({ flags: MessageFlags.Ephemeral });
-				await wait(4_000);
+				await wait(3_000);
 				
 				if (!timePassed){
 					i.channel.send(textToSend);
@@ -146,7 +147,7 @@ module.exports = {
 				await i.deleteReply();
 			}
 
-			await wait (5_000);
+			await wait (3_000);
 			soundActive = false;
 
 		});
