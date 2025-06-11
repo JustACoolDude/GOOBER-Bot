@@ -15,7 +15,7 @@ Functions were made here but were mostly for early testing purposes.
 
 
 class Player {
-    constructor (name, realName, score, scoreHistory, scoreHistoryKey, kromer, itemInventory, maxInvSize, relicInventory){
+    constructor (name, realName, score, scoreHistory, scoreHistoryKey, kromer, itemInventory, maxInvSize, relicInventory, discID){
         this.name = name;
         this.realName = realName;
         this.score = 0;
@@ -25,6 +25,7 @@ class Player {
         this.itemInventory = new Array();
         this.maxInvSize = 4;
         this.relicInventory = new Array();
+        this.discID = 0;
         //this.playerIndex = playerIndex;
     }
     

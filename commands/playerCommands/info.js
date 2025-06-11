@@ -4,27 +4,15 @@ const pList = require('../../utilityFiles/playerList.js');
 
 // A command to get a player's information (Name, Score, Discord Profile Picture, current placement)
 
-// Searches the playerList for a specific value (in this case, names). Returns true if it finds the name, otherwise false.
-function searchByValue(value, mapToSearch){
-    var lowercaseValue = value.toLowerCase();
-    var arrayMap = mapToSearch.entries();
 
-    for (let i = 0; i < arrayMap; i++){
-        if (arrayMap[i].name.toLowerCase() === lowercaseValue){
-            return true;
-        }
-    }
-    return false;
-}
-
-// Similar to searchByValue, but instead returns a Player Object from PlayerList.
+// Returns a profile based on user's real name, otherwise returns null
 function getProfileByName(value, mapToSearch){
-    var lowercaseValue = value.toLowerCase();
-    var arrayMap = mapToSearch.entries();
+    var lowercaseValue = value.toLowerCase(); 
+    var valuesArray = Array.from(mapToSearch.values()); 
+    for (let i = 0; i < valuesArray.length; i++){
 
-    for (let i = 0; i < arrayMap; i++){
-        if (arrayMap[i].name.toLowerCase() === lowercaseValue){
-            return arrayMap[i];
+        if (valuesArray[i].realName.toLowerCase() === lowercaseValue){
+            return valuesArray[i];
         }
     }
     return null;
@@ -49,18 +37,17 @@ module.exports = {
 
          // If user didn't input a different player's ping, give's back user's Player info.
         if (pList.playerList.has(interaction.user.id) && inputUser == null && inputName == null) {
-            
-            var playerInput = pList.playerList.get(interaction.user.id.toString());            
+            var playerInput = pList.playerList.get(interaction.user.id.toString());   
+        
             var playerEmbed = new EmbedBuilder()
                 .setColor(0x0099FF)
                 .setTitle(playerInput.realName)
                 .setURL('https://discord.js.org/')
-                .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
+                .setAuthor({ name: interaction.user.globalName, iconURL: interaction.user.displayAvatarURL(), url: 'https://discord.js.org' })
                 .setDescription('Some description here')
-                .setThumbnail('https://i.imgur.com/AfFp7pu.png')
+                .setThumbnail(interaction.user.displayAvatarURL())
                 .addFields(
                     { name: 'Score', value: playerInput.score.toString()},
-                    { name: 'Kromer', value: playerInput.kromer.toString()}
                     //{ name: '\u200B', value: '\u200B' },
                     //{ name: 'Inline field title', value: 'Some value here', inline: true },
                     //{ name: 'Inline field title', value: 'Some value here', inline: true },
@@ -88,7 +75,6 @@ module.exports = {
                 .setThumbnail('https://i.imgur.com/AfFp7pu.png')
                 .addFields(
                     { name: 'Score', value: inputPlayer.score.toString()},
-                    { name: 'Kromer', value: inputPlayer.kromer.toString()}
                     //{ name: '\u200B', value: '\u200B' },
                     //{ name: 'Inline field title', value: 'Some value here', inline: true },
                     //{ name: 'Inline field title', value: 'Some value here', inline: true },
@@ -100,19 +86,21 @@ module.exports = {
         }
 
         // Searches by real name, returns requested player's info.
-        else if (inputUser == null && inputName !== null && searchByValue(inputName,pList.playerList)) {
-            
+        else if (inputName !== null && getProfileByName(inputName, pList.playerList) !== null) {
             var namedUser = getProfileByName(inputName, pList.playerList);
+            console.log(namedUser)
+            var discUser = await interaction.client.users.fetch(namedUser.discID);
+            console.log("test2");
+            console.log(discUser);
             var playerEmbed = new EmbedBuilder()
                 .setColor(0x0099FF)
                 .setTitle(namedUser.realName)
                 .setURL('https://discord.js.org/')
-                .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
+                .setAuthor({ name: 'Some name', iconURL: discUser.displayAvatarURL(), url: 'https://discord.js.org' })
                 .setDescription('Some description here')
                 .setThumbnail('https://i.imgur.com/AfFp7pu.png')
                 .addFields(
                     { name: 'Score', value: namedUser.score.toString()},
-                    { name: 'Kromer', value: namedUser.kromer.toString()}
                     //{ name: '\u200B', value: '\u200B' },
                     //{ name: 'Inline field title', value: 'Some value here', inline: true },
                     //{ name: 'Inline field title', value: 'Some value here', inline: true },
