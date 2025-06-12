@@ -47,7 +47,7 @@ module.exports = {
 
             var playerEmbed = new EmbedBuilder()
                 .setColor(0x0099FF)
-                .setTitle(playerString)
+                .setTitle(`Info on ${playerString}`)
                 .setURL('https://discord.js.org/')
                 .setAuthor({ name: `${interaction.user.globalName}`, iconURL: interaction.user.displayAvatarURL(), url: 'https://discord.js.org' })
                 //.setDescription('Some description here')
@@ -87,9 +87,13 @@ module.exports = {
         else if (inputUser !== null && pList.playerList.has(inputUser.id.toString())) {
             var inputPlayer = pList.playerList.get(inputUser.id.toString());
 
+            var playerString = inputPlayer.realName;
+            if (inputPlayer.nickname !== ""){
+                playerString += ` "${inputPlayer.nickname}"`;
+            }
             var playerEmbed = new EmbedBuilder()
                 .setColor(0x0099FF)
-                .setTitle(`Info on ${inputPlayer.realName}`)
+                .setTitle(`Info on ${playerString}`)
                 .setURL('https://discord.js.org/')
                 .setAuthor({ name: interaction.user.globalName, iconURL: interaction.user.displayAvatarURL(), url: 'https://discord.js.org' })
                 //.setDescription('Some description here')
@@ -104,8 +108,8 @@ module.exports = {
             for (let i = 0; i < inputPlayer.maxInvSize; i++){
                 itemText = inputPlayer.itemInventory[i] ?? "";
                 playerEmbed.addFields({ name: `Slot ${i+1}`, value: `${itemText}`, inline: true })
-                 if ((i+1) % 2 == 0){
-                 playerEmbed.addFields({name: "\t", value: "\t"})   
+                if ((i+1) % 2 == 0){
+                    playerEmbed.addFields({name: "\t", value: "\t"})   
                 }
             }
 
@@ -126,9 +130,15 @@ module.exports = {
         else if (inputName !== null && getProfileByName(inputName, pList.playerList) !== null) {
             var namedUser = getProfileByName(inputName, pList.playerList);
             var discUser = await interaction.client.users.fetch(namedUser.discID);
+            var userProfile = pList.playerList.get(namedUser.discID);
+            
+            var playerString = userProfile.realName;
+            if (userProfile.nickname !== ""){
+                playerString += ` "${userProfile.nickname}"`;
+            }
               var playerEmbed = new EmbedBuilder()
                 .setColor(0x0099FF)
-                .setTitle(`Info on ${namedUser.realName}`)
+                .setTitle(`Info on ${playerString}`)
                 .setURL('https://discord.js.org/')
                 .setAuthor({ name: discUser.globalName, iconURL: discUser.displayAvatarURL(), url: 'https://discord.js.org' })
                 //.setDescription('Some description here')
@@ -136,8 +146,6 @@ module.exports = {
                 .addFields(
                     { name: 'Score', value: namedUser.score.toString()},
                     //{ name: '\u200B', value: '\u200B' },
-                    //{ name: 'Inline field title', value: 'Some value here', inline: true },
-                    //{ name: 'Inline field title', value: 'Some value here', inline: true },
                 )
                 //.setImage('https://i.imgur.com/AfFp7pu.png')
                 .setTimestamp();
