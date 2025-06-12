@@ -38,12 +38,18 @@ module.exports = {
          // If user didn't input a different player's ping, give's back user's Player info.
         if (pList.playerList.has(interaction.user.id) && inputUser == null && inputName == null) {
             var playerInput = pList.playerList.get(interaction.user.id.toString());   
-        
+            
+            var playerString = playerInput.realName;
+            if (playerInput.nickname !== ""){
+                playerString += ` "${playerInput.nickname}"`;
+            }
+
+
             var playerEmbed = new EmbedBuilder()
                 .setColor(0x0099FF)
-                .setTitle(playerInput.realName)
+                .setTitle(playerString)
                 .setURL('https://discord.js.org/')
-                .setAuthor({ name: interaction.user.globalName, iconURL: interaction.user.displayAvatarURL(), url: 'https://discord.js.org' })
+                .setAuthor({ name: `${interaction.user.globalName}`, iconURL: interaction.user.displayAvatarURL(), url: 'https://discord.js.org' })
                 //.setDescription('Some description here')
                 .setThumbnail(interaction.user.displayAvatarURL())
                 .addFields(

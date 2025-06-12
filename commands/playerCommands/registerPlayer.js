@@ -34,8 +34,8 @@ module.exports = {
             // Instantiates new Player class
             
             var nameString = interaction.options.getString('name');
-            // name, realName, score, scoreHistory, scoreHistoryKey, kromer, itemInventory, maxInvSize, relicInventory, discID
-            var createPlayer = new Player(interaction.user.username, nameString, 0, new Map(), 0, 0, new Array(), 4, new Array(), interaction.user.id);
+            // name, realName, score, scoreHistory, scoreHistoryKey, kromer, itemInventory, maxInvSize, relicInventory, discID. nickname
+            var createPlayer = new Player(interaction.user.username, nameString, 0, new Map(), 0, 0, new Array(), 4, new Array(), interaction.user.id, "");
             
             // Creates a new addition to the map based on player's Discord ID, ensuring each entry is unique.
             pList.playerList.set(interaction.user.id, createPlayer);

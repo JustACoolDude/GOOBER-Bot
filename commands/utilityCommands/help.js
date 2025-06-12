@@ -28,6 +28,7 @@ module.exports = {
                 { name: 'info [ping/real name/leave blank]', value: "Either ping a user or type their real name to get info on them. Leave blank for your own info."},
                 { name: 'scoreboard', value: "Get an ordered list of who's in the lead!"},
                 { name: 'roll <integer/wof>', value: "Roll a dice or spin the Wheel of Fortune!"},
+                { name: 'nickname', value: 'Give yourself a nickname!'},
                 { name: 'about', value: "Learn about this bot!"},
             )
             //.addFields({ name: 'Inline field title', value: 'Some value here', inline: true })

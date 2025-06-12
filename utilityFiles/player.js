@@ -13,9 +13,8 @@ Functions were made here but were mostly for early testing purposes.
 @param {Arr} relicInventory, a way to add relics to the game.
 */
 
-
 class Player {
-    constructor (name, realName, score, scoreHistory, scoreHistoryKey, kromer, itemInventory, maxInvSize, relicInventory, discID){
+    constructor (name, realName, score, scoreHistory, scoreHistoryKey, kromer, itemInventory, maxInvSize, relicInventory, discID, nickname){
         this.name = name;
         this.realName = realName;
         this.score = score;
@@ -26,6 +25,7 @@ class Player {
         this.maxInvSize = maxInvSize;
         this.relicInventory = relicInventory;
         this.discID = discID;
+        this.nickname = nickname;
         //this.playerIndex = playerIndex;
     }
     
