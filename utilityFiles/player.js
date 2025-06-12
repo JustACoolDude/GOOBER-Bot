@@ -8,9 +8,9 @@ Functions were made here but were mostly for early testing purposes.
 @param {Map} scoreHistory = A map that details all score changes to a player. Used to double check that you haven't made a mistake somewhere. Mostly for console usage with /print.
 @param {Int} scoreHistoryKey = The key to use for scoreHistory, incases by itself with the /score add/subtract commands.
 @param {Int} kromer, a fun way to add a currency system to the game. Based off of Spamton's dialogue from Deltarune Ch. 2
-@param {Map} itemInventory, a way to add items to the game. 
+@param {Arr} itemInventory, a way to add items to the game. 
 @param {Int} maxInvSize, a way to have a limit to the size of the player's inventory. Default is 4.
-@param {map} relicInventory, a way to add relics to the game.
+@param {Arr} relicInventory, a way to add relics to the game.
 */
 
 

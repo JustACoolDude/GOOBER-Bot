@@ -2,7 +2,6 @@ const { SlashCommandBuilder } = require('discord.js');
 const fs = require('fs');
 const pList = require('../../utilityFiles/playerList.js');
 const {gameHostID} = require('../../config.json');
-
 // Manual Save function for when if the bot suddenly crashes. Game can be resumed by using the /load command, which loads from the latest players.txt file.
 // Score commands do an autosave when used.
 // Currently WIP
@@ -47,3 +46,4 @@ module.exports = {
         await interaction.reply('Save Complete!');
 	},
 };
+

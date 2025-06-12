@@ -13,14 +13,14 @@ module.exports = {
             ),
 	    
         async execute(interaction) {
-
+            console.log(interaction.client.user);
             var playerEmbed = new EmbedBuilder()
             .setColor(0x0099FF)
             .setTitle('List of commands!')
             .setURL('https://discord.js.org/')
-            .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
+            .setAuthor({ name: interaction.client.user.username, iconURL: interaction.client.user.displayAvatarURL(), url: 'https://discord.js.org' })
             .setDescription('Find all usable commands here! All commands begin with a "/".')
-            .setThumbnail('https://i.imgur.com/AfFp7pu.png')
+            .setThumbnail(interaction.client.user.displayAvatarURL())
             .addFields(
                 { name: 'help', value: 'You\'ve just used this command!'},
                 { name: 'register <real name>', value: "**USE THIS COMMAND FIRST!** Add in your real name (required) for ease of use later on."},
@@ -39,9 +39,9 @@ module.exports = {
             .setColor(0x0099FF)
             .setTitle('List of Admin Commands!')
             .setURL('https://discord.js.org/')
-            .setAuthor({ name: 'Some name', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
-            .setDescription('You must be pretty cool to be able to see these!.')
-            .setThumbnail('https://i.imgur.com/AfFp7pu.png')
+            .setAuthor({ name: interaction.client.user.username, iconURL: interaction.client.user.displayAvatarURL(), url: 'https://discord.js.org' })
+            .setDescription('You must be pretty cool to be able to see these!')
+            .setThumbnail(interaction.client.user.displayAvatarURL())
             .addFields(
                 { name: 'score <add/subtract> <value> [optional comment]', value: 'Alters the score of a registered player!'},
                 { name: 'remove <player>', value: "De-registers a player, allowing them to re-register."},

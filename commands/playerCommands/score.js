@@ -4,6 +4,26 @@ const fs = require('fs');
 const pList = require('../../utilityFiles/playerList.js');
 const {gameHostID} = require('../../config.json');
 
+function savePlayers(){
+            
+            function mapToJson(map) {
+                const obj = {};
+                for (const [key, value] of map) {
+                    obj[key] = value instanceof Map ? mapToJson(value) : value;
+                }
+                return JSON.stringify(obj);
+            }
+
+            const json = mapToJson(pList.playerList);
+            fs.writeFile("players.txt", json, function(err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
+            
+        }
+
+
  //Score Commands to alter Score
 
  module.exports = {
@@ -103,7 +123,6 @@ const {gameHostID} = require('../../config.json');
                 playerInput.scoreHistoryKey += 1;
 
                 if (inputKromer){
-                    console.log("test)");
                     playerInput.kromer += (inputChange / 100);
                 }
                 
