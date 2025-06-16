@@ -1,0 +1,1 @@
+{"379794732009914369":{"name":".themonkeyking","realName":"ryan","score":100,"scoreHistory":{},"scoreHistoryKey":1,"kromer":1,"itemInventory":[],"maxInvSize":4,"relicInventory":[],"discID":"379794732009914369"}}
